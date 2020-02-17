@@ -1,0 +1,325 @@
+/*---------------------------------------*/
+/*               CSS Reset               */
+/*---------------------------------------*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    /*overflow: hidden;*/
+}
+
+/* HTML5 display-role reset for older browsers */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+    blockquote:before,
+    blockquote:after,
+    q:before,
+    q:after {
+        content: '';
+        content: none;
+    }
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/*app css*/
+
+body {
+    margin: 0;
+    font-family: CosmosLight, "Comic Sans MS", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+.webmap {
+    height: 100vh;
+}
+
+/*---------------------------------------*/
+/*         main nav styling              */
+/*---------------------------------------*/
+.navWrapper {
+    width: 100% !important;
+    height: 13vh;
+    z-index: 1032;
+    text-align: center;
+    position: absolute;
+    float: left;
+    top: 0vh;
+   
+}
+
+/*---------------------------------------*/
+/*      map and widget styling           */
+/*---------------------------------------*/
+
+.esri-ui-top-left {
+    top: 100px !important;
+    left: 0 !important;
+}
+
+.full-screen-map {
+    position: absolute;
+    top: 0;
+    z-index: 0;
+}
+
+#basemapGalleryDiv {
+    margin-left: 80%;
+    margin-top: 5%;
+    width: 10%;
+}
+
+.esri-ui-top-right {
+    top: 60px !important;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+    color: #444;
+    font-weight: 600;
+    line-height: 1.5;
+    margin: 0 0 30px 0;
+    font-family: CosmosLight;
+}
+
+#clearWidget {
+    position: relative;
+    top: 255px;
+    left: 14.5px;
+    box-shadow: 2px 2px #f2f2f2;
+}
+
+#distanceMesurment {
+    position: relative;
+    top: 245px;
+    left: 14.5px;
+    box-shadow: 2px 2px #f2f2f2;
+}
+
+/*---------------------------------------*/
+/*           Dashboard styling           */
+/*---------------------------------------*/
+.nav-item {
+    color: #0000ff !important;
+}
+.dashboardWrapper {
+    padding-bottom: 10px;
+    max-width: 615px !important;
+    max-height: 90vh;
+    overflow-y: auto;
+    text-align: center;
+    position: absolute;
+    float: right;
+    top: 13vh;
+    right: 20px;
+    z-index: 1000;
+    background-color: #003366c4;
+    opacity: 1;
+    color: #fff;
+    /*overflow-y: auto;*/
+    --scrollbarBG: #fff;
+    --thumbBG: #212529d9;
+    scrollbar-width: thin;
+    scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+.close {
+    border-radius: 50px;
+    margin-top: 1.5%;
+    background-color:#fff;
+    cursor: pointer;
+}
+.dashboardTaps {
+    font-family: CosmosLight;
+    margin-top: 10px;
+    padding: 10px;
+    border-bottom: 2px solid #3fa7cc;
+    font-size: 20px;
+    color: rgb(25, 37, 216);
+}
+.dashboardTitle {
+    font-size: 1.2rem;
+    color: #ccffcc;
+}
+
+/*---------------------------------------*/
+/*       General           */
+/*---------------------------------------*/
+ .tblGeneral {
+     width: 400px;
+     padding: 2%;
+     color: #000000;
+     background: #ffffff;
+ }
+ .tblGeneral tr {
+    font-size: 1rem;
+    align-items: center;
+    text-align: center; 
+ } 
+
+ .tblGeneral th {
+     width: 58%;
+     font-size: 1rem;
+     text-align: left;
+     padding-left: 2%;
+ } 
+ 
+ .tblGeneral td {
+    width: 42%;
+    font-size: 0.8rem;
+    text-align:left;  
+    padding-right: 1%;
+  
+} 
+
+
+/*---------------------------------------*/
+/*       Risk          */
+/*---------------------------------------*/
+.tblRisk {
+    width: 400px;
+    padding: 2%;
+    color: #000000;
+    background: #ffffff;
+    margin-bottom: 2%;
+}
+.tblRisk tr {
+   font-size: 1rem;
+   align-items: center;
+   text-align: center; 
+} 
+
+.tblRisk th {
+    width: 60%;
+    font-size: 0.8rem;
+    text-align: left;
+    padding-left: 2%;
+} 
+
+.tblRisk td {
+   width: 30%;
+   font-size: 0.7rem;
+   text-align:left;  
+   padding-right: 1%;
+ 
+} 
+.riskChart {
+ width: 30%;
+ border-radius: 60px;
+}
+
