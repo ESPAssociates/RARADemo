@@ -18,22 +18,41 @@ class Map extends Component {
         return false;
     };
 
+    
+    componentWillReceiveProps(nextProps) {
+   
+    };
+
     homeWidget = (e) => {
        
          this.props.setDashboard("close");
         
     };
 
-    loadMap(props, forecastValues) {
-        return loadModules(['esri/Map', 'esri/views/MapView', 'esri/Basemap', 'esri/widgets/BasemapGallery','esri/widgets/Home', 'esri/widgets/Expand', 'esri/layers/TileLayer', 'esri/layers/FeatureLayer', "esri/widgets/Legend"])
-            .then(([Map, MapView, Basemap, BasemapGallery,Search, Home, Expand, TileLayer, FeatureLayer,  Legend,  ]) => {
+    // function to init/load map.  This is called when component mounts
+    // map is only ever rendered once
+    loadMap() {
+        return loadModules(['esri/Map', 'esri/views/MapView', 'esri/Basemap', 'esri/widgets/BasemapGallery', "esri/widgets/BasemapToggle", 'esri/widgets/Search', 'esri/widgets/Home', 'esri/widgets/Expand', 'esri/layers/TileLayer', 'esri/layers/FeatureLayer', 'esri/widgets/Slider', "esri/widgets/Legend", "esri/widgets/DistanceMeasurement2D", "esri/layers/ImageryLayer", "esri/layers/support/RasterFunction", "esri/widgets/Measurement"])
+            .then(([Map, MapView, Basemap, BasemapGallery, BasemapToggle, Search, Home, Expand, TileLayer, FeatureLayer, Slider, Legend, DistanceMeasurement2D, ImageryLayer, RasterFunction, Measurement]) => {
                 
                 const topomap = new TileLayer({
                     url: Data.mapUrl,
                 });
 
+                const imagery = new TileLayer({
+                    url: Data.imageryUrl,
+                    minScale: 36112
+                });
+
+
+                const defaultBasemap = new Basemap({
+                    baseLayers: [topomap],
+                    title: "RARR Basemap ",
+                    id: "RARR Basemap"
+                });
+
                 const map = new Map({
-                    basemap: topomap
+                    basemap: defaultBasemap
                 });
                 
                 const view = new MapView({
@@ -74,7 +93,7 @@ class Map extends Component {
 
                 view.ui.move("zoom", "top-left");
 
-                
+                //home customized to close all opend modals and set the zoom level to the intial value
                 const homeBtn = new Home({
                     viewModel: {
                         view: view
@@ -114,7 +133,29 @@ class Map extends Component {
                     content: legend
                 });
                 view.ui.add(expand, "top-left");
-                
+                view.on("click", function (evt) {
+                    const screenPoint = evt.screenPoint;
+                    
+                    view.hitTest(evt)
+                        .then(getGraphics)
+    
+                });
+    
+                const getGraphics = (respose) => {
+    
+                    const graphic = respose.results[0].graphic;
+                    const attributes = graphic.attributes;
+                    this.props.setGraphics(attributes)
+                    this.props.setDashboard("open");
+                }
+                         
+                // return () => {
+                //     if (view) {
+                //         // destroy the map view
+                //         view.container = null;
+                //     }
+                // };
+    
 
                 // return components of map that need to respond to user interaction
                 let mapReturn = {
@@ -132,36 +173,7 @@ class Map extends Component {
     // and add click watcher
     componentDidMount() {
         
-        this.loadMap(this.props).then(mapReturn => {
-            this._map = mapReturn.map;
-            this._view = mapReturn.mapView;
-            this._RARRBuildingsLayer = mapReturn.mapRARRBuildingsLayer;
-            let view = mapReturn.mapView;
-            view.on("click", function (evt) {   
-                view.hitTest(evt)
-                    .then(getGraphics)
-
-            });
-
-            const getGraphics = (respose) => {
-
-                const graphic = respose.results[0].graphic;
-                const attributes = graphic.attributes;
-                this.props.setGraphics(attributes)
-                this.props.setDashboard("open");
-            }
-                     
-            return () => {
-                if (view) {
-                    // destroy the map view
-                    view.container = null;
-                }
-            };
-
-
-        });
-
-
+        this.loadMap()
     }
     
     render() {
