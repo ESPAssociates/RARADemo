@@ -32,16 +32,11 @@ class Map extends Component {
     // function to init/load map.  This is called when component mounts
     // map is only ever rendered once
     loadMap() {
-        return loadModules(['esri/Map', 'esri/views/MapView', 'esri/Basemap', 'esri/widgets/BasemapGallery', "esri/widgets/BasemapToggle", 'esri/widgets/Search', 'esri/widgets/Home', 'esri/widgets/Expand', 'esri/layers/TileLayer', 'esri/layers/FeatureLayer', 'esri/widgets/Slider', "esri/widgets/Legend", "esri/widgets/DistanceMeasurement2D", "esri/layers/ImageryLayer", "esri/layers/support/RasterFunction", "esri/widgets/Measurement"])
-            .then(([Map, MapView, Basemap, BasemapGallery, BasemapToggle, Search, Home, Expand, TileLayer, FeatureLayer, Slider, Legend, DistanceMeasurement2D, ImageryLayer, RasterFunction, Measurement]) => {
+        return loadModules(['esri/Map', 'esri/views/MapView', 'esri/Basemap', 'esri/widgets/BasemapGallery', 'esri/widgets/Search', 'esri/widgets/Home', 'esri/widgets/Expand', 'esri/layers/TileLayer', 'esri/layers/FeatureLayer', "esri/widgets/Legend"])
+            .then(([Map, MapView, Basemap, BasemapGallery, Search, Home, Expand, TileLayer, FeatureLayer, Legend]) => {
                 
                 const topomap = new TileLayer({
                     url: Data.mapUrl,
-                });
-
-                const imagery = new TileLayer({
-                    url: Data.imageryUrl,
-                    minScale: 36112
                 });
 
 
@@ -102,11 +97,6 @@ class Map extends Component {
                 }, "homeWidget");
                 view.ui.add(homeBtn, "top-left");
 
-                homeBtn.viewModel.on("go", function (e) {
-                   
-
-                });
-                
                 const basemapGallery = new BasemapGallery({
                     view: view
                 });
